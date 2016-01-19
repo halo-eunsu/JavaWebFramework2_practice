@@ -33,7 +33,7 @@
 	</select>
 	
 	<update id="updateMember" parameterType="member">
-		UPDATE MEMBERS SET EMAIL = #{email}, MNAME = #{name}, MOD_DATE = now() WHERE MNO = #{id}
+		UPDATE MEMBERS SET EMAIL = #{email}, MNAME = #{name}, MOD_DATE = now() WHERE MNO = #{no}
 	</update>
 	
 	<delete id="deleteMember">
