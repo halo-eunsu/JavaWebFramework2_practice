@@ -13,7 +13,7 @@
 		)
 	</update>
 	
-	<select id="selectMemberExist" resultType="member">
+	<select id="selectMemberExist" resultMap="memberResultMap">
 		SELECT MNAME,EMAIL FROM MEMBERS WHERE EMAIL=#{email} AND PWD=#{password}	
 	</select>
 	
@@ -24,11 +24,11 @@
 		(#{email}, #{password}, #{name}, NOW(), NOW())	
 	</insert>
 	
-	<select id="selectMemberList" resultType="member">
+	<select id="selectMemberList" resultMap="memberResultMap">
 		SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS ORDER BY MNO ASC	
 	</select>
 	
-	<select id="selectMember" parameterType="int" resultType="member">
+	<select id="selectMember" parameterType="int" resultMap="memberResultMap">
 		SELECT MNO,MNAME,EMAIL,CRE_DATE FROM MEMBERS WHERE MNO = #{id}
 	</select>
 	
@@ -39,4 +39,13 @@
 	<delete id="deleteMember">
 		DELETE FROM MEMBERS WHERE MNO = #{id}
 	</delete>
+	
+	<resultMap type="member" id="memberResultMap">
+		<id property="no" column="MNO" />
+		<result property="name" column="MNAME" />
+		<result property="email" column="EMAIL" />
+		<result property="password" column="PWD" />
+		<result property="createdDate" column="CRE_DATE" />
+		<result property="modifiedDate" column="MOD_DATE" />
+	</resultMap>
 </mapper>
