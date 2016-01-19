@@ -1,0 +1,15 @@
+*.class
+*~
+
+# ignore eclipse or spring settings
+.project
+.classpath
+.settings/
+.springBeans
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+/target/
