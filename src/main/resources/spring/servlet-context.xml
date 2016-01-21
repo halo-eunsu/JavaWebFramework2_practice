@@ -16,11 +16,13 @@
 		<property name="mappings">
 			<value>
 				/member/list.do=memberListController
+				/auth/logout.do=logOutController
 			</value>
 		</property>
 	</bean>
 	
 	<bean id="memberListController" class="controller.MemberListController" />
+	<bean id="logOutController" class="controller.LogOutController" />
 	
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
