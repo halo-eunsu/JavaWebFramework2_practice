@@ -17,7 +17,7 @@ public class LogInController {
 
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.GET)
 	public String loginForm() {
-		return "/auth/LogInForm.jsp";
+		return "/auth/LogInForm";
 	}
 	
 	@RequestMapping(value = "/auth/login.do", method = RequestMethod.POST)
