@@ -17,10 +17,6 @@ public class MemberDao {
 	SqlSessionTemplate sqlSessionTemplate;
 
 	
-	public int createTable() {
-		return sqlSessionTemplate.update(NAMESPACE + "createTable");
-	}
-	
 	public Member exist(String email, String password) {
 		Member member = new Member();
 		member.setEmail(email);
