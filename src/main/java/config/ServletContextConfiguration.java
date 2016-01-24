@@ -14,7 +14,7 @@ import controller.LogOutController;
 import controller.MemberListController;
 
 @Configuration
-@ComponentScan(basePackages = "controller, dao, vo")
+@ComponentScan(basePackages = "controller, dao, vo, validator")
 @EnableWebMvc
 public class ServletContextConfiguration {
 	@Bean
