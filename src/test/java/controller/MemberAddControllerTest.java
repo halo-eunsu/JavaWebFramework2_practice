@@ -1,37 +1,40 @@
 package controller;
 
+import dao.MemberDao;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.ContextHierarchy;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.context.WebApplicationContext;
+import validator.MemberValidator;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@WebAppConfiguration
-@ContextHierarchy({
-	@ContextConfiguration(classes = config.RootContextConfiguration.class),
-	@ContextConfiguration(classes = config.ServletContextConfiguration.class)
-})
+@RunWith(MockitoJUnitRunner.class)
 public class MemberAddControllerTest {
-	@Autowired
-	private WebApplicationContext wac;
-
 	private MockMvc mockMvc;
-	
+
+    @Mock
+    MemberDao memberDao;
+
+    MemberValidator memberValidator = new MemberValidator();
+
+    @InjectMocks
+	private MemberAddController memberAddController;
+
+
     @Before
     public void setUp() throws Exception {
-		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.wac).build();
+        memberAddController.setMemberValidator(memberValidator);
+
+		this.mockMvc = MockMvcBuilders.standaloneSetup(memberAddController)
+                .build();
     }
     
     @Test
@@ -60,6 +63,6 @@ public class MemberAddControllerTest {
     				.param("password", "1"))
     				.andExpect(status().is3xxRedirection())
     				.andExpect(view().name("redirect:list.do"));
-    }
+	}
     
 }

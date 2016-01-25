@@ -1,7 +1,6 @@
 package controller;
 
-import javax.validation.Valid;
-
+import dao.MemberDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -9,10 +8,10 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
-import dao.MemberDao;
 import validator.MemberValidator;
 import vo.Member;
+
+import javax.validation.Valid;
 
 @Controller
 public class MemberAddController {
@@ -21,9 +20,12 @@ public class MemberAddController {
 	
 	@Autowired
 	MemberValidator memberValidator;
-	
-	
-	@RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
+
+    public void setMemberValidator(MemberValidator memberValidator) {
+        this.memberValidator = memberValidator;
+    }
+
+    @RequestMapping(value = "/member/add.do", method = RequestMethod.GET)
 	public String memberAddForm() {
 		return "/member/MemberForm";
 	}
