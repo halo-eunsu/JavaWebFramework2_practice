@@ -9,7 +9,19 @@ public class Member {
 	protected String 	password;
 	protected Date		createdDate;
 	protected Date		modifiedDate;
-	
+
+
+    public Member() {
+        // do nothing
+    }
+
+	public Member(int no, String name, String email, String password) {
+        this.no = no;
+        this.name = name;
+        this.email = email;
+        this.password = password;
+    }
+
 	
 	public int getNo() {
 		return no;
