@@ -13,3 +13,9 @@
 *.ear
 
 /target/
+
+# ignore intelij or webstorm settings
+*.iml
+.idea/
+deploy/
+
